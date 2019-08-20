@@ -3,12 +3,12 @@ define(["require", "exports", "esri/WebScene", "esri/views/SceneView", "esri/lay
     Object.defineProperty(exports, "__esModule", { value: true });
     var layer = new GeoJSONLayer({
         url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
-        title: "USGS Earthquakes",
+        title: "Sismos - Servicio Geológico de los Estados Unidos",
         copyright: "USGS",
         definitionExpression: "type = 'earthquake' and mag > 0",
         popupTemplate: {
             title: "{title}",
-            content: "\n      Earthquake of magnitude {mag} on {time}.<br />\n      <a href=\"{url}\" target=\"_blank\" class=\"esri-popup__button\">More details...</a>\n    "
+            content: "\n      Sismo de magnitud {mag} el {time}.<br />\n      <a href=\"{url}\" target=\"_blank\" class=\"esri-popup__button\">Más detalles...</a>\n    "
         },
         fields: [
             { "name": "mag", "type": "double" },
@@ -35,10 +35,9 @@ define(["require", "exports", "esri/WebScene", "esri/views/SceneView", "esri/lay
         qualityProfile: "high",
         camera: {
             position: {
-                x: -16743466,
-                y: 3344365,
-                z: 10123853,
-                spatialReference: { wkid: 102100 }
+                x: -82.786,
+                y: -5.533,
+                z: 10123853
             },
             heading: 7.55,
             tilt: 14.93
@@ -75,25 +74,25 @@ define(["require", "exports", "esri/WebScene", "esri/views/SceneView", "esri/lay
                 "tilt": 52.01343839819215
             });
             view.goTo(camera, {
-                duration: 3000
+                duration: 2000
             });
         } });
-    var colombia = new IconButton_1.default({ title: "CO", action: function () {
+    var panama = new IconButton_1.default({ title: "PA", action: function () {
         var camera = new Camera({
             "position": {
-                "x": -74.2973328,
-                "y": 0.570868,
-                "z": 1000000
+                "x": -79.7973328,
+                "y": -5.570868,
+                "z": 1400000
             },
             "heading": 0.509,
-            "tilt": 37.076
+            "tilt": 50.076
         });
         view.goTo(camera, {
-            duration: 3000
+            duration: 2000
         });
     } });
     var quakeBookmark = new IconButton_1.default({
-        title: "Subterránea AK", action: function () {
+        title: "AK (sub)", action: function () {
             scene.ground.navigationConstraint = {
                 type: "none"
             };
@@ -110,36 +109,36 @@ define(["require", "exports", "esri/WebScene", "esri/views/SceneView", "esri/lay
                 "tilt": 95.36043529090966
             });
             view.goTo(camera, {
-                duration: 3000
+                duration: 2000
             });
         }
     });
-    var quakeBookmarkCO = new IconButton_1.default({
-        title: "Subterránea CO", action: function () {
+    var quakeBookmarkPA = new IconButton_1.default({
+        title: "PA (sub)", action: function () {
             scene.ground.navigationConstraint = {
                 type: "none"
             };
             var camera = new Camera({
                 "position": {
-                    "x": -74.2973328,
-                    "y": -1.570868,
-                    "z": -70000.189062614925
+                    "x": -82.78328,
+                    "y": -0.870868,
+                    "z": -71000
                 },
                 "heading": 0.509,
-                "tilt": 85.36043529090966
+                "tilt": 88.36043529090966
             });
             view.goTo(camera, {
-                duration: 5000
+                duration: 3000
             });
         }
     });
     view.ui.add(zoom, "bottom-right");
-    view.ui.add(home, "bottom-right");
     view.ui.add(quakeBookmark, "bottom-right");
-    view.ui.add(quakeBookmarkCO, "bottom-right");
     view.ui.add(alaska, "bottom-right");
-    view.ui.add(colombia, "bottom-right");
-    view.ui.add(new Banner_1.default({ title: "ArcGIS para Desarrolladores" }));
+    view.ui.add(quakeBookmarkPA, "bottom-right");
+    view.ui.add(panama, "bottom-right");
+    view.ui.add(home, "bottom-right");
+    view.ui.add(new Banner_1.default({ title: "Visualización de Sismos" }));
     var $ = document.querySelector.bind(document);
     var expand1 = new Expand({
         expandIconClass: "esri-icon-feature-layer",
